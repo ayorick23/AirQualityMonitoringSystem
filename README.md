@@ -206,19 +206,19 @@ Información obtenida:
 
 3.  Configurar la cadena de conexión
 
-        Editar el archivo:
+    Editar el archivo:
 
-        ```text
-        appsettings.json
-        ```
+    ```text
+    appsettings.json
+    ```
 
-        y configurar:
+    y configurar:
 
-        ```JSON
-        "ConnectionStrings": {
-        "DefaultConnection": "server=localhost;port=3306;database=AirQualityDB;user=root;password=TU_PASSWORD;"
-        }
-        ```
+    ```JSON
+    "ConnectionStrings": {
+    "DefaultConnection": "server=localhost;port=3306;database=AirQualityDB;user=root;password=TU_PASSWORD;"
+    }
+    ```
 
 ## Configuración de base de datos
 
