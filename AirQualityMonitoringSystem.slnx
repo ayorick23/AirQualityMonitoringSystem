@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="AirQualityMonitoringSystem.API/AirQualityMonitoringSystem.API.csproj" />
+  <Project Path="AirQualityMonitoringSystem.Application/AirQualityMonitoringSystem.Application.csproj" />
+  <Project Path="AirQualityMonitoringSystem.Domain/AirQualityMonitoringSystem.Domain.csproj" />
+  <Project Path="AirQualityMonitoringSystem.Infrastructure/AirQualityMonitoringSystem.Infrastructure.csproj" />
+</Solution>
