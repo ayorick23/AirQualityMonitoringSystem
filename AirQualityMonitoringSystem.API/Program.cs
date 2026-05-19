@@ -1,11 +1,26 @@
 using Microsoft.EntityFrameworkCore;
 using AirQualityMonitoringSystem.Infrastructure.Persistence;
+using AirQualityMonitoringSystem.Application.Interfaces;
+using AirQualityMonitoringSystem.Application.Services;
+using AirQualityMonitoringSystem.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
 
 // Configuración Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Repositories
+builder.Services.AddScoped<ISensorRepository, SensorRepository>();
+builder.Services.AddScoped<ILecturaRepository, LecturaRepository>();
+builder.Services.AddScoped<IAlertaRepository, AlertaRepository>();
+
+// Services
+builder.Services.AddScoped<SensorService>();
+builder.Services.AddScoped<LecturaService>();
+builder.Services.AddScoped<AlertaService>();
 
 // Configuración de MySQL
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -27,6 +42,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.MapControllers();
 
 app.UseHttpsRedirection();
 
