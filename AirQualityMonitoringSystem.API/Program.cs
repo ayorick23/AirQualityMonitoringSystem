@@ -57,6 +57,7 @@ builder.Services.AddScoped<SensorService>();
 builder.Services.AddScoped<LecturaService>();
 builder.Services.AddScoped<AlertaService>();
 builder.Services.AddScoped<JwtService>();
+builder.Services.AddScoped<WeatherService>();
 
 // Configuración de MySQL
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -99,6 +100,9 @@ builder.Services.AddAuthentication(options =>
                 new SymmetricSecurityKey(key)
         };
 });
+
+// Configuración HttpClient
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 

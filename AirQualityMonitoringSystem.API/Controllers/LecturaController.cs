@@ -59,5 +59,16 @@ namespace AirQualityMonitoringSystem.API.Controllers
 
             return Ok(lecturas);
         }
+
+        // GET: api/lectura/enriquecidas
+        [HttpGet("enriquecidas")]
+        public async Task<IActionResult> GetLecturasEnriquecidas()
+        {
+            var lecturas =
+                await _lecturaService
+                    .GetLecturasEnriquecidasAsync();
+
+            return Ok(lecturas);
+        }
     }
 }

@@ -9,15 +9,18 @@ namespace AirQualityMonitoringSystem.Application.Services
         private readonly ILecturaRepository _lecturaRepository;
         private readonly ISensorRepository _sensorRepository;
         private readonly IAlertaRepository _alertaRepository;
+        private readonly WeatherService _weatherService;
 
         public LecturaService(
             ILecturaRepository lecturaRepository,
             ISensorRepository sensorRepository,
-            IAlertaRepository alertaRepository)
+            IAlertaRepository alertaRepository,
+            WeatherService weatherService)
         {
             _lecturaRepository = lecturaRepository;
             _sensorRepository = sensorRepository;
             _alertaRepository = alertaRepository;
+            _weatherService = weatherService;
         }
 
         // Registrar lectura
@@ -76,6 +79,35 @@ namespace AirQualityMonitoringSystem.Application.Services
                 PM10 = l.PM10,
                 CO2 = l.CO2,
                 FechaHora = l.FechaHora
+            });
+        }
+
+        // Obtener lecturas enriquecidas
+        public async Task<IEnumerable<LecturaEnriquecidaDto>>
+            GetLecturasEnriquecidasAsync()
+        {
+            var lecturas =
+                await _lecturaRepository.GetFilteredAsync(
+                    null,
+                    null,
+                    null);
+
+            var clima =
+                await _weatherService.GetWeatherAsync();
+
+            return lecturas.Select(l => new LecturaEnriquecidaDto
+            {
+                SensorId = l.SensorId,
+                PM2_5 = l.PM2_5,
+                PM10 = l.PM10,
+                CO2 = l.CO2,
+                FechaHora = l.FechaHora,
+
+                Temperatura =
+                    clima?.Current.temperature_2m ?? 0,
+
+                Humedad =
+                    clima?.Current.relative_humidity_2m ?? 0
             });
         }
 
