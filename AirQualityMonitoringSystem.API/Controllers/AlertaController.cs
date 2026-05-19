@@ -1,10 +1,12 @@
 ﻿using AirQualityMonitoringSystem.Application.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AirQualityMonitoringSystem.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class AlertaController : ControllerBase
     {
         private readonly AlertaService _alertaService;

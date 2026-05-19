@@ -1,11 +1,13 @@
 ﻿using AirQualityMonitoringSystem.Application.DTOs.SensorDTOs;
 using AirQualityMonitoringSystem.Application.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AirQualityMonitoringSystem.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class SensorController : ControllerBase
     {
         private readonly SensorService _sensorService;
